@@ -1,3 +1,4 @@
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <?php
 // Form submitted, check the data
 if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == 'yes')
@@ -103,7 +104,7 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
 						<td><?php echo $data['Popupwfb_timeout']; ?></td>
 						<td><?php echo $data['Popupwfb_group']; ?></td>
 						<td><?php echo $data['Popupwfb_status']; ?></td>
-						<td><?php echo $data['Popupwfb_expiration']; ?></td>
+						<td><?php echo substr($data['Popupwfb_expiration'],0,10); ?></td>
 					</tr>
 					<?php 
 					$i = $i+1; 

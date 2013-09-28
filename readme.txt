@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpres
 Plugin URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Tags:  popup, fancybox, plugin
 Requires at least: 3.4
-Tested up to: 3.6
-Stable tag: 1.0
+Tested up to: 3.6.1
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -72,8 +72,18 @@ Q4. How to setup expiration date for the popup message?
 			
 First version	
 
+= 1.1 =		
+
+1. New option to add expiration date.
+2. Added one security code that wordpress offers us.
+
 == Changelog ==
 
 = 1.0 =		
 			
 First version
+
+= 1.1 =		
+
+1. New option to add expiration date.
+2. Added one security code that wordpress offers us.

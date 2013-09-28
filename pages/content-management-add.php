@@ -1,3 +1,4 @@
+<?php if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); } ?>
 <div class="wrap">
 <?php
 $Popupwfb_errors = array();
@@ -64,15 +65,17 @@ if (isset($_POST['Popupwfb_form_submit']) && $_POST['Popupwfb_form_submit'] == '
 		$Popupwfb_error_found = TRUE;
 	}
 	
+	$form['Popupwfb_expiration'] = isset($_POST['Popupwfb_expiration']) ? $_POST['Popupwfb_expiration'] : '';
+	
 
 	//	No errors found, we can add this Group to the table
 	if ($Popupwfb_error_found == FALSE)
 	{
 		$sql = $wpdb->prepare(
 			"INSERT INTO `".Popupwfb_Table."`
-			(`Popupwfb_width`, `Popupwfb_timeout`, `Popupwfb_title`, `Popupwfb_content`, `Popupwfb_group`, `Popupwfb_status`)
-			VALUES(%s, %s, %s, %s, %s, %s)",
-			array($form['Popupwfb_width'], $form['Popupwfb_timeout'], $form['Popupwfb_title'], $form['Popupwfb_content'], $form['Popupwfb_group'], $form['Popupwfb_status'])
+			(`Popupwfb_width`, `Popupwfb_timeout`, `Popupwfb_title`, `Popupwfb_content`, `Popupwfb_group`, `Popupwfb_status`, `Popupwfb_expiration`)
+			VALUES(%s, %s, %s, %s, %s, %s, %s)",
+			array($form['Popupwfb_width'], $form['Popupwfb_timeout'], $form['Popupwfb_title'], $form['Popupwfb_content'], $form['Popupwfb_group'], $form['Popupwfb_status'], $form['Popupwfb_expiration'])
 		);
 		$wpdb->query($sql);
 		
@@ -157,14 +160,18 @@ if ($Popupwfb_error_found == FALSE && strlen($Popupwfb_success) > 0)
 		{
 			$arrDistinctData[$j]["Popupwfb_group"] = "GROUP" . $j;
 		}
-		$arrDistinctDatas = array_unique($arrDistinctData, SORT_REGULAR);
-		foreach ($arrDistinctDatas as $arrDistinct)
+		//$arrDistinctDatas = array_unique($arrDistinctData, SORT_REGULAR);
+		foreach ($arrDistinctData as $arrDistinct)
 		{
 			?><option value='<?php echo strtoupper($arrDistinct["Popupwfb_group"]); ?>'><?php echo strtoupper($arrDistinct["Popupwfb_group"]); ?></option><?php
 		}
 		?>
 		</select>
 		<p>Please select available group for your popup message.</p>
+		
+		<label for="tag-title">Expiration date</label>
+		<input name="Popupwfb_expiration" type="text" id="Popupwfb_expiration" value="9999-12-31" maxlength="10" />
+		<p>Please enter the expiration date in this format YYYY-MM-DD <br /> 9999-12-31 : Is equal to no expire.</p>
 	  
       <input name="Popupwfb_id" id="Popupwfb_id" type="hidden" value="">
       <input type="hidden" name="Popupwfb_form_submit" value="yes"/>

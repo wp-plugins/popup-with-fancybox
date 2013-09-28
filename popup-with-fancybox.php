@@ -1,10 +1,9 @@
 <?php
-
 /*
 Plugin Name: Popup with fancybox
 Description: This plugin allows you to create lightweight JQuery fancy box popup window in your blog with custom content. In the admin interface we can easily configure popup size and timeout. In this popup we can display any content such as Video, Image, Advertisement and much more.
 Author: Gopi.R
-Version: 1.0
+Version: 1.1
 Plugin URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Author URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Donate link: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
@@ -60,8 +59,8 @@ function Popupwfb_shortcode( $atts )
 	{
 		return '';
 	}
-	$Popupwfb_group = $atts['group'];
-	$Popupwfb_id = $atts['id'];
+	$Popupwfb_group = isset($atts['group']) ? $atts['group'] : '';
+	$Popupwfb_id = isset($atts['id']) ? $atts['id'] : '';
 	
 	$sSql = "select * from ".Popupwfb_Table." where Popupwfb_status = 'YES'";
 	if($Popupwfb_group <> "" && $Popupwfb_id <> "")
@@ -78,6 +77,7 @@ function Popupwfb_shortcode( $atts )
 		$sSql = $sSql . " and Popupwfb_id=$Popupwfb_id";
 	}
 	
+	$sSql = $sSql . " and ( Popupwfb_expiration >= NOW() or Popupwfb_expiration = '0000-00-00 00:00:00' )";
 	$sSql = $sSql . " Order by rand()";
 	$sSql = $sSql . " LIMIT 0,1";
 
