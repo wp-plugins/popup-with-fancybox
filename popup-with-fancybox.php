@@ -3,7 +3,7 @@
 Plugin Name: Popup with fancybox
 Description: This plugin allows you to create lightweight JQuery fancy box popup window in your blog with custom content. In the admin interface we can easily configure popup size and timeout. In this popup we can display any content such as Video, Image, Advertisement and much more.
 Author: Gopi.R
-Version: 1.1
+Version: 1.2
 Plugin URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Author URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Donate link: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
@@ -13,10 +13,19 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 global $wpdb, $wp_version;
 define("Popupwfb_Table", $wpdb->prefix . "popupwith_fancybox");
-define("Popupwfb_UNIQUE_NAME", "popup-with-fancybox");
-define("Popupwfb_TITLE", "Popup with fancybox");
 define('Popupwfb_FAV', 'http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/');
-define('Popupwfb_LINK', 'Check official website for more information <a target="_blank" href="'.Popupwfb_FAV.'">click here</a>');
+
+if ( ! defined( 'POPUPWFB_BASENAME' ) )
+	define( 'POPUPWFB_BASENAME', plugin_basename( __FILE__ ) );
+	
+if ( ! defined( 'POPUPWFB_PLUGIN_NAME' ) )
+	define( 'POPUPWFB_PLUGIN_NAME', trim( dirname( POPUPWFB_BASENAME ), '/' ) );
+	
+if ( ! defined( 'POPUPWFB_PLUGIN_URL' ) )
+	define( 'POPUPWFB_PLUGIN_URL', WP_PLUGIN_URL . '/' . POPUPWFB_PLUGIN_NAME );
+	
+if ( ! defined( 'POPUPWFB_ADMIN_URL' ) )
+	define( 'POPUPWFB_ADMIN_URL', get_option('siteurl') . '/wp-admin/options-general.php?page=popup-with-fancybox' );
 
 if (!session_id())
 {
@@ -32,11 +41,11 @@ function popupwfb( $Popupwfb_group = "", $Popupwfb_id = "" )
 	{
 		$display = "YES";
 	}
-	else if($Popupwfb_session == "YES" && $_SESSION['popup-with-fancybox'] <> "YES")
+	else if($Popupwfb_session == "YES" && isset($_SESSION['popup-with-fancybox']) <> "YES")
 	{
 		$display = "YES";
 	}
-	else if($Popupwfb_session == "YES" && $_SESSION['popup-with-fancybox'] == "YES")
+	else if($Popupwfb_session == "YES" && isset($_SESSION['popup-with-fancybox']) == "YES")
 	{
 		$display = "NO";
 	}
@@ -125,20 +134,20 @@ function Popupwfb_install()
 	global $wpdb, $wp_version;
 	if($wpdb->get_var("show tables like '". Popupwfb_Table . "'") != Popupwfb_Table) 
 	{
-		$sSql = "CREATE TABLE IF NOT EXISTS `". Popupwfb_Table . "` (";
-		$sSql = $sSql . "`Popupwfb_id` INT NOT NULL AUTO_INCREMENT ,";
-		$sSql = $sSql . "`Popupwfb_width` int(11) NOT NULL default '500' ,";
-		$sSql = $sSql . "`Popupwfb_timeout` int( 11 ) NOT NULL default '3000' ,";
-		$sSql = $sSql . "`Popupwfb_title` VARCHAR( 1024 ) NOT NULL default 'Sample popup' ,";
-		$sSql = $sSql . "`Popupwfb_content`TEXT CHARACTER SET utf8 COLLATE utf8_bin NOT NULL ,";
-		$sSql = $sSql . "`Popupwfb_group` VARCHAR( 20 ) NOT NULL default 'GROUP1' ,";
-		$sSql = $sSql . "`Popupwfb_status` VARCHAR( 3 ) NOT NULL default 'YES' ,";
-		$sSql = $sSql . "`Popupwfb_expiration` datetime NOT NULL default '0000-00-00 00:00:00' ,";
-		$sSql = $sSql . "`Popupwfb_starttime` datetime NOT NULL default '0000-00-00 00:00:00' ,";
-		$sSql = $sSql . "`Popupwfb_extra1` VARCHAR( 1024 ) NOT NULL default '' ,";
-		$sSql = $sSql . "`Popupwfb_extra2` VARCHAR( 1024 ) NOT NULL default '' ,";
+		$sSql = "CREATE TABLE IF NOT EXISTS ". Popupwfb_Table . " (";
+		$sSql = $sSql . "Popupwfb_id INT NOT NULL AUTO_INCREMENT ,";
+		$sSql = $sSql . "Popupwfb_width int(11) NOT NULL default '500' ,";
+		$sSql = $sSql . "Popupwfb_timeout int( 11 ) NOT NULL default '3000' ,";
+		$sSql = $sSql . "Popupwfb_title VARCHAR( 1024 ) NOT NULL default 'Sample popup' ,";
+		$sSql = $sSql . "Popupwfb_content TEXT CHARACTER SET utf8 COLLATE utf8_bin NOT NULL ,";
+		$sSql = $sSql . "Popupwfb_group VARCHAR( 20 ) NOT NULL default 'GROUP1' ,";
+		$sSql = $sSql . "Popupwfb_status VARCHAR( 3 ) NOT NULL default 'YES' ,";
+		$sSql = $sSql . "Popupwfb_expiration datetime NOT NULL default '0000-00-00 00:00:00' ,";
+		$sSql = $sSql . "Popupwfb_starttime datetime NOT NULL default '0000-00-00 00:00:00' ,";
+		$sSql = $sSql . "Popupwfb_extra1 VARCHAR( 1024 ) NOT NULL default '' ,";
+		$sSql = $sSql . "Popupwfb_extra2 VARCHAR( 1024 ) NOT NULL default '' ,";
 		$sSql = $sSql . "PRIMARY KEY ( `Popupwfb_id` )";
-		$sSql = $sSql . ")";
+		$sSql = $sSql . ") ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
 		$wpdb->query($sSql);
 		
 		$sSql = "";	
@@ -167,11 +176,11 @@ function Popupwfb_widget($args)
 	{
 		$display = "YES";
 	}
-	else if($Popupwfb_session == "YES" && $_SESSION['popup-with-fancybox'] <> "YES")
+	else if($Popupwfb_session == "YES" && isset($_SESSION['popup-with-fancybox']) <> "YES")
 	{
 		$display = "YES";
 	}
-	else if($Popupwfb_session == "YES" && $_SESSION['popup-with-fancybox'] == "YES")
+	else if($Popupwfb_session == "YES" && isset($_SESSION['popup-with-fancybox']) == "YES")
 	{
 		$display = "NO";
 	}
@@ -186,20 +195,21 @@ function Popupwfb_widget($args)
 	
 function Popupwfb_control() 
 {
-	?><p>To change the setting <a href="options-general.php?page=popup-with-fancybox&ac=set">click here</a></p><?php
-	echo Popupwfb_LINK;
+	echo '<p>';
+	_e('Check official website for more information', 'popupwfb');
+	?> <a target="_blank" href="<?php echo Popupwfb_FAV; ?>"><?php _e('click here', 'popupwfb'); ?></a></p><?php
 }
 
 function Popupwfb_widget_init()
 {
 	if(function_exists('wp_register_sidebar_widget')) 
 	{
-		wp_register_sidebar_widget('Popup with fancybox', 'Popup with fancybox', 'Popupwfb_widget');
+		wp_register_sidebar_widget( __('Popup with fancybox', 'popupwfb'), __('Popup with fancybox', 'popupwfb'), 'Popupwfb_widget');
 	}
 	
 	if(function_exists('wp_register_widget_control')) 
 	{
-		wp_register_widget_control('Popup with fancybox', array('Popup with fancybox', 'widgets'), 'Popupwfb_control');
+		wp_register_widget_control(__('Popup with fancybox', 'popupwfb'), array( __('Popup with fancybox', 'popupwfb'), 'widgets'), 'Popupwfb_control');
 	} 
 }
 
@@ -232,7 +242,7 @@ function Popupwfb_admin()
 
 function Popupwfb_add_to_menu() 
 {
-	add_options_page('Popup with fancybox', 'Popup with fancybox', 'manage_options', 'popup-with-fancybox', 'Popupwfb_admin' );
+	add_options_page(__('Popup with fancybox', 'popupwfb'), __('Popup with fancybox', 'popupwfb'), 'manage_options', 'popup-with-fancybox', 'Popupwfb_admin' );
 }
 
 if (is_admin()) 
@@ -248,8 +258,14 @@ function Popupwfb_add_javascript_files()
 		wp_enqueue_style( 'jquery.fancybox', get_option('siteurl').'/wp-content/plugins/popup-with-fancybox/inc/jquery.fancybox.css');
 		wp_enqueue_script('jquery.fancybox', get_option('siteurl').'/wp-content/plugins/popup-with-fancybox/inc/jquery.fancybox.js');
 	}
-}   
+}  
 
+function Popupwfb_textdomain() 
+{
+	  load_plugin_textdomain( 'popupwfb', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+
+add_action('plugins_loaded', 'Popupwfb_textdomain');
 add_shortcode( 'popupwfancybox', 'Popupwfb_shortcode' );
 add_action('wp_enqueue_scripts', 'Popupwfb_add_javascript_files');
 add_action("plugins_loaded", "Popupwfb_widget_init");

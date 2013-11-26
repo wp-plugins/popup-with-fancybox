@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpres
 Plugin URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Tags:  popup, fancybox, plugin
 Requires at least: 3.4
-Tested up to: 3.6.1
-Stable tag: 1.1
+Tested up to: 3.8
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -33,6 +33,7 @@ In the admin we have standard wordpress HTML editor to create the popup message.
 4. HTML editor to create the popup message.
 5. Option to set expiration time for message.
 6. Option to set popup display once per session.
+6. Supports localization
 
 = Plugin configuration option =
 
@@ -77,6 +78,13 @@ First version
 1. New option to add expiration date.
 2. Added one security code that wordpress offers us.
 
+= 1.2 =		
+
+1. Tested up to 3.8 (Beta)
+2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (popupwfb.po) available in the languages folder. Translators Welcome.
+3. Supports network multisite website (Needs to create table manually).
+
 == Changelog ==
 
 = 1.0 =		
@@ -87,3 +95,10 @@ First version
 
 1. New option to add expiration date.
 2. Added one security code that wordpress offers us.
+
+= 1.2 =		
+
+1. Tested up to 3.8 (Beta)
+2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
+Plugin *.po file (popupwfb.po) available in the languages folder. Translators Welcome.
+3. Supports network multisite website (Needs to create table manually).

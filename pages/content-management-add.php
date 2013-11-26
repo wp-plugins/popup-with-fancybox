@@ -26,42 +26,42 @@ if (isset($_POST['Popupwfb_form_submit']) && $_POST['Popupwfb_form_submit'] == '
 	$form['Popupwfb_width'] = isset($_POST['Popupwfb_width']) ? $_POST['Popupwfb_width'] : '';
 	if ($form['Popupwfb_width'] == '')
 	{
-		$Popupwfb_errors[] = __('Please enter the popup window width, only number.', Popupwfb_UNIQUE_NAME);
+		$Popupwfb_errors[] = __('Please enter the popup window width, only number.', 'popupwfb');
 		$Popupwfb_error_found = TRUE;
 	}
 	
 	$form['Popupwfb_timeout'] = isset($_POST['Popupwfb_timeout']) ? $_POST['Popupwfb_timeout'] : '';
 	if ($form['Popupwfb_timeout'] == '')
 	{
-		$Popupwfb_errors[] = __('Please enter popup timeout, only number.', Popupwfb_UNIQUE_NAME);
+		$Popupwfb_errors[] = __('Please enter popup timeout, only number.', 'popupwfb');
 		$Popupwfb_error_found = TRUE;
 	}
 
 	$form['Popupwfb_title'] = isset($_POST['Popupwfb_title']) ? $_POST['Popupwfb_title'] : '';
 	if ($form['Popupwfb_title'] == '')
 	{
-		$Popupwfb_errors[] = __('Please enter popup title.', Popupwfb_UNIQUE_NAME);
+		$Popupwfb_errors[] = __('Please enter popup title.', 'popupwfb');
 		$Popupwfb_error_found = TRUE;
 	}
 	
 	$form['Popupwfb_content'] = isset($_POST['Popupwfb_content']) ? $_POST['Popupwfb_content'] : '';
 	if ($form['Popupwfb_content'] == '')
 	{
-		$Popupwfb_errors[] = __('Please enter popup message.', Popupwfb_UNIQUE_NAME);
+		$Popupwfb_errors[] = __('Please enter popup message.', 'popupwfb');
 		$Popupwfb_error_found = TRUE;
 	}
 	
 	$form['Popupwfb_group'] = isset($_POST['Popupwfb_group']) ? $_POST['Popupwfb_group'] : '';
 	if ($form['Popupwfb_group'] == '')
 	{
-		$Popupwfb_errors[] = __('Please select available group for your popup message.', Popupwfb_UNIQUE_NAME);
+		$Popupwfb_errors[] = __('Please select available group for your popup message.', 'popupwfb');
 		$Popupwfb_error_found = TRUE;
 	}
 	
 	$form['Popupwfb_status'] = isset($_POST['Popupwfb_status']) ? $_POST['Popupwfb_status'] : '';
 	if ($form['Popupwfb_status'] == '')
 	{
-		$Popupwfb_errors[] = __('Please select popup status.', Popupwfb_UNIQUE_NAME);
+		$Popupwfb_errors[] = __('Please select popup status.', 'popupwfb');
 		$Popupwfb_error_found = TRUE;
 	}
 	
@@ -79,7 +79,7 @@ if (isset($_POST['Popupwfb_form_submit']) && $_POST['Popupwfb_form_submit'] == '
 		);
 		$wpdb->query($sql);
 		
-		$Popupwfb_success = __('New details was successfully added.', Popupwfb_UNIQUE_NAME);
+		$Popupwfb_success = __('New details was successfully added.', 'popupwfb');
 		
 		// Reset the form fields
 		$form = array(
@@ -107,42 +107,43 @@ if ($Popupwfb_error_found == FALSE && strlen($Popupwfb_success) > 0)
 {
 	?>
 	  <div class="updated fade">
-		<p><strong><?php echo $Popupwfb_success; ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=popup-with-fancybox">Click here</a> to view the details</strong></p>
+		<p><strong><?php echo $Popupwfb_success; ?> <a href="<?php echo POPUPWFB_ADMIN_URL; ?>"><?php _e('Click here', 'popupwfb'); ?></a> 
+			<?php _e('to view the details', 'popupwfb'); ?></strong></p>
 	  </div>
 	  <?php
 	}
 ?>
-<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/popup-with-fancybox/pages/setting.js"></script>
+<script language="JavaScript" src="<?php echo POPUPWFB_PLUGIN_URL; ?>/pages/setting.js"></script>
 <div class="form-wrap">
 	<div id="icon-edit" class="icon32 icon32-posts-post"><br></div>
-	<h2><?php echo Popupwfb_TITLE; ?></h2>
+	<h2><?php _e('Popup with fancybox', 'popupwfb'); ?></h2>
 	<form name="Popupwfb_form" method="post" action="#" onsubmit="return _Popupwfb_submit()"  >
-      <h3>Add details</h3>
+      <h3><?php _e('Add details', 'popupwfb'); ?></h3>
       
-		<label for="tag-a">Popup width</label>
+		<label for="tag-a"><?php _e('Popup width', 'popupwfb'); ?></label>
 		<input name="Popupwfb_width" type="text" id="Popupwfb_width" value="500" size="20" maxlength="4" />
-		<p>Enter your popup window width. (Ex: 500)</p>
+		<p><?php _e('Enter your popup window width. (Ex: 500)', 'popupwfb'); ?></p>
 		
-		<label for="tag-a">Popup timeout</label>
+		<label for="tag-a"><?php _e('Popup timeout', 'popupwfb'); ?></label>
 		<input name="Popupwfb_timeout" type="text" id="Popupwfb_timeout" value="3000" size="20" maxlength="5" />
-		<p>Enter your popup window timeout in millisecond. (Ex: 3000)</p>
+		<p><?php _e('Enter your popup window timeout in millisecond. (Ex: 3000)', 'popupwfb'); ?></p>
 		
-		<label for="tag-a">Popup title</label>
+		<label for="tag-a"><?php _e('Popup title', 'popupwfb'); ?></label>
 		<input name="Popupwfb_title" type="text" id="Popupwfb_title" value="" size="50" maxlength="250" />
-		<p>Enter your popup title.</p>
+		<p><?php _e('Enter your popup title.', 'popupwfb'); ?></p>
 	  
-	  	<label for="tag-a">Popup message</label>
+	  	<label for="tag-a"><?php _e('Popup message', 'popupwfb'); ?></label>
 		<?php wp_editor("", "Popupwfb_content"); ?>
-		<p>Enter your popup message.</p>
+		<p><?php _e('Enter your popup message.', 'popupwfb'); ?></p>
 		
-		<label for="tag-a">Popup display</label>
+		<label for="tag-a"><?php _e('Popup display', 'popupwfb'); ?></label>
 		<select name="Popupwfb_status" id="Popupwfb_status">
 			<option value='YES' selected="selected">Yes</option>
 			<option value='NO'>No</option>
 		</select>
-		<p>Please select your popup display status. (Select NO if you want to hide the popup in front end)</p>
+		<p><?php _e('Please select your popup display status. (Select NO if you want to hide the popup in front end)', 'popupwfb'); ?></p>
 		
-		<label for="tag-a">Popup group</label>
+		<label for="tag-a"><?php _e('Popup group', 'popupwfb'); ?></label>
 	    <select name="Popupwfb_group" id="Popupwfb_group">
 		<option value=''>Select</option>
 		<?php
@@ -167,21 +168,24 @@ if ($Popupwfb_error_found == FALSE && strlen($Popupwfb_success) > 0)
 		}
 		?>
 		</select>
-		<p>Please select available group for your popup message.</p>
+		<p><?php _e('Please select available group for your popup message.', 'popupwfb'); ?></p>
 		
-		<label for="tag-title">Expiration date</label>
+		<label for="tag-title"><?php _e('Expiration date', 'popupwfb'); ?></label>
 		<input name="Popupwfb_expiration" type="text" id="Popupwfb_expiration" value="9999-12-31" maxlength="10" />
-		<p>Please enter the expiration date in this format YYYY-MM-DD <br /> 9999-12-31 : Is equal to no expire.</p>
+		<p><?php _e('Please enter the expiration date in this format YYYY-MM-DD <br /> 9999-12-31 : Is equal to no expire.', 'popupwfb'); ?></p>
 	  
       <input name="Popupwfb_id" id="Popupwfb_id" type="hidden" value="">
       <input type="hidden" name="Popupwfb_form_submit" value="yes"/>
       <p class="submit">
-        <input name="publish" lang="publish" class="button" value="Submit" type="submit" />
-        <input name="publish" lang="publish" class="button" onclick="_Popupwfb_redirect()" value="Cancel" type="button" />
-        <input name="Help" lang="publish" class="button" onclick="_Popupwfb_help()" value="Help" type="button" />
+        <input name="publish" lang="publish" class="button" value="<?php _e('Submit', 'popupwfb'); ?>" type="submit" />
+        <input name="publish" lang="publish" class="button" onclick="_Popupwfb_redirect()" value="<?php _e('Cancel', 'popupwfb'); ?>" type="button" />
+        <input name="Help" lang="publish" class="button" onclick="_Popupwfb_help()" value="<?php _e('Help', 'popupwfb'); ?>" type="button" />
       </p>
 	  <?php wp_nonce_field('Popupwfb_form_add'); ?>
     </form>
 </div>
-<p class="description"><?php echo Popupwfb_LINK; ?></p>
+<p class="description">
+	<?php _e('Check official website for more information', 'popupwfb'); ?>
+	<a target="_blank" href="<?php echo Popupwfb_FAV; ?>"><?php _e('click here', 'popupwfb'); ?></a>
+</p>
 </div>

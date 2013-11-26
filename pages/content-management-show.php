@@ -19,7 +19,7 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
 	
 	if ($result != '1')
 	{
-		?><div class="error fade"><p><strong>Oops, selected details doesn't exist (1).</strong></p></div><?php
+		?><div class="error fade"><p><strong><?php _e('Oops, selected details doesnt exist.', 'popupwfb'); ?></strong></p></div><?php
 	}
 	else
 	{
@@ -37,7 +37,7 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
 			
 			//	Set success message
 			$Popupwfb_success_msg = TRUE;
-			$Popupwfb_success = __('Selected record was successfully deleted.', Popupwfb_UNIQUE_NAME);
+			$Popupwfb_success = __('Selected record was successfully deleted.', 'popupwfb');
 		}
 	}
 	
@@ -49,38 +49,39 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
 ?>
 <div class="wrap">
   <div id="icon-edit" class="icon32 icon32-posts-post"></div>
-    <h2><?php echo Popupwfb_TITLE; ?><a class="add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=popup-with-fancybox&amp;ac=add">Add New</a></h2>
+    <h2><?php _e('Popup with fancybox', 'popupwfb'); ?>
+	<a class="add-new-h2" href="<?php echo POPUPWFB_ADMIN_URL; ?>&amp;ac=add"><?php _e('Add New', 'popupwfb'); ?></a></h2>
     <div class="tool-box">
 	<?php
 		$sSql = "SELECT * FROM `".Popupwfb_Table."` order by Popupwfb_id desc";
 		$myData = array();
 		$myData = $wpdb->get_results($sSql, ARRAY_A);
 		?>
-		<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/popup-with-fancybox/pages/setting.js"></script>
+		<script language="JavaScript" src="<?php echo POPUPWFB_PLUGIN_URL; ?>/pages/setting.js"></script>
 		<form name="frm_Popupwfb_display" method="post">
       <table width="100%" class="widefat" id="straymanage">
         <thead>
           <tr>
             <th class="check-column" scope="col"><input type="checkbox" name="Popupwfb_group_item[]" /></th>
-			<th scope="col">Id</th>
-			<th scope="col">Title</th>
-            <th scope="col">Width</th>
-			<th scope="col">Timeout</th>
-			<th scope="col">Group</th>
-			<th scope="col">Status</th>
-			<th scope="col">Expiration</th>
+			<th scope="col"><?php _e('Id', 'popupwfb'); ?></th>
+			<th scope="col"><?php _e('Title', 'popupwfb'); ?></th>
+            <th scope="col"><?php _e('Width', 'popupwfb'); ?></th>
+			<th scope="col"><?php _e('Timeout', 'popupwfb'); ?></th>
+			<th scope="col"><?php _e('Group', 'popupwfb'); ?></th>
+			<th scope="col"><?php _e('Status', 'popupwfb'); ?></th>
+			<th scope="col"><?php _e('Expiration', 'popupwfb'); ?></th>
           </tr>
         </thead>
 		<tfoot>
           <tr>
             <th class="check-column" scope="col"><input type="checkbox" name="Popupwfb_group_item[]" /></th>
-			<th scope="col">Id</th>
-			<th scope="col">Title</th>
-            <th scope="col">Width</th>
-			<th scope="col">Timeout</th>
-			<th scope="col">Group</th>
-			<th scope="col">Status</th>
-			<th scope="col">Expiration</th>
+			<th scope="col"><?php _e('Id', 'popupwfb'); ?></th>
+			<th scope="col"><?php _e('Title', 'popupwfb'); ?></th>
+            <th scope="col"><?php _e('Width', 'popupwfb'); ?></th>
+			<th scope="col"><?php _e('Timeout', 'popupwfb'); ?></th>
+			<th scope="col"><?php _e('Group', 'popupwfb'); ?></th>
+			<th scope="col"><?php _e('Status', 'popupwfb'); ?></th>
+			<th scope="col"><?php _e('Expiration', 'popupwfb'); ?></th>
           </tr>
         </tfoot>
 		<tbody>
@@ -96,8 +97,10 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
 						<td><?php echo $data['Popupwfb_id']; ?></td>
 						<td><?php echo stripslashes($data['Popupwfb_title']); ?>
 						<div class="row-actions">
-							<span class="edit"><a title="Edit" href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=popup-with-fancybox&amp;ac=edit&amp;did=<?php echo $data['Popupwfb_id']; ?>">Edit</a> | </span>
-							<span class="trash"><a onClick="javascript:_Popupwfb_delete('<?php echo $data['Popupwfb_id']; ?>')" href="javascript:void(0);">Delete</a></span> 
+						<span class="edit">
+						<a title="Edit" href="<?php echo POPUPWFB_ADMIN_URL; ?>&amp;ac=edit&amp;did=<?php echo $data['Popupwfb_id']; ?>"><?php _e('Edit', 'popupwfb'); ?></a> | </span>
+						<span class="trash">
+						<a onClick="javascript:_Popupwfb_delete('<?php echo $data['Popupwfb_id']; ?>')" href="javascript:void(0);"><?php _e('Delete', 'popupwfb'); ?></a></span> 
 						</div>
 						</td>
 						<td><?php echo $data['Popupwfb_width']; ?></td>
@@ -112,7 +115,7 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
 			}
 			else
 			{
-				?><tr><td colspan="8" align="center">No records available.</td></tr><?php 
+				?><tr><td colspan="8" align="center"><?php _e('No records available.', 'popupwfb'); ?></td></tr><?php 
 			}
 			?>
 		</tbody>
@@ -122,18 +125,21 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
       </form>	
 	  <div class="tablenav">
 	  <h2>
-	  <a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=popup-with-fancybox&amp;ac=add">Add New</a>
-	  <a class="button add-new-h2" href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=popup-with-fancybox&amp;ac=set">Popup Setting</a>
-	  <a class="button add-new-h2" target="_blank" href="<?php echo Popupwfb_FAV; ?>">Help</a>
+	  <a class="button add-new-h2" href="<?php echo POPUPWFB_ADMIN_URL; ?>&amp;ac=add"><?php _e('Add New', 'popupwfb'); ?></a>
+	  <a class="button add-new-h2" href="<?php echo POPUPWFB_ADMIN_URL; ?>&amp;ac=set"><?php _e('Popup Setting', 'popupwfb'); ?></a>
+	  <a class="button add-new-h2" target="_blank" href="<?php echo Popupwfb_FAV; ?>"><?php _e('Help', 'popupwfb'); ?></a>
 	  </h2>
 	  </div>
 	  <div style="height:5px"></div>
-	<h3>Plugin configuration option</h3>
+	<h3><?php _e('Plugin configuration option', 'popupwfb'); ?></h3>
 	<ol>
-		<li>Drag and drop the widget (Display entire website).</li>
-		<li>Add popup into specific  post or page using short code.</li>
-		<li>Add directly in to the theme using PHP code.</li>
+		<li><?php _e('Drag and drop the widget (Display entire website)', 'popupwfb'); ?>.</li>
+		<li><?php _e('Add popup into specific  post or page using short code', 'popupwfb'); ?></li>
+		<li><?php _e('Add directly in to the theme using PHP code', 'popupwfb'); ?></li>
 	</ol>
-	<p class="description"><?php echo Popupwfb_LINK; ?></p>
+	<p class="description">
+		<?php _e('Check official website for more information', 'popupwfb'); ?>
+		<a target="_blank" href="<?php echo Popupwfb_FAV; ?>"><?php _e('click here', 'popupwfb'); ?></a>
+	</p>
 	</div>
 </div>
