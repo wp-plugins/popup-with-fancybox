@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpres
 Plugin URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Tags:  popup, fancybox, plugin
 Requires at least: 3.4
-Tested up to: 3.8
-Stable tag: 1.2
+Tested up to: 3.9
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -85,6 +85,10 @@ First version
 Plugin *.po file (popupwfb.po) available in the languages folder. Translators Welcome.
 3. Supports network multisite website (Needs to create table manually).
 
+= 1.3 =		
+
+1. Tested up to 3.9
+
 == Changelog ==
 
 = 1.0 =		
@@ -102,3 +106,7 @@ First version
 2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
 Plugin *.po file (popupwfb.po) available in the languages folder. Translators Welcome.
 3. Supports network multisite website (Needs to create table manually).
+
+= 1.3 =		
+
+1. Tested up to 3.9
