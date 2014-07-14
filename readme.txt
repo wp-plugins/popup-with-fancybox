@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpres
 Plugin URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Tags:  popup, fancybox, plugin
 Requires at least: 3.4
-Tested up to: 3.9
-Stable tag: 1.3
+Tested up to: 3.9.1
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -33,15 +33,23 @@ In the admin we have standard wordpress HTML editor to create the popup message.
 4. HTML editor to create the popup message.
 5. Option to set expiration time for message.
 6. Option to set popup display once per session.
-6. Supports localization
+6. Supports localization.
 
 = Plugin configuration option =
 
-1. Display popup in specific page/post.
-2. Display popup in entire website.
-3. Display popup only in the home page.
+Display popup in specific page/post.
 
-[More details](http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/)
+This plugin have short code option to display the popup in specific page. Just copy and paste the plugin short code into specific posts or pages to display the popup. We can use group name or message id to display the popup.
+
+Display popup in entire website.
+
+* Go to widget page and drag and drop the widget Popup with fancybox into your sidebar, so that popup will display in entire website.
+* Copy and paste the given PHP code into your footer.php file, so that popup will display in the entire website.
+
+Display popup only in the home page.
+
+* Download footer.php file from your theme folder.
+* Paste the given PHP code, and upload back to server.
 
 == Installation ==	
 
@@ -89,6 +97,10 @@ Plugin *.po file (popupwfb.po) available in the languages folder. Translators We
 
 1. Tested up to 3.9
 
+= 1.4 =		
+
+1. Added Start Date option for popup window (Expiration date option already available).
+
 == Changelog ==
 
 = 1.0 =		
@@ -110,3 +122,7 @@ Plugin *.po file (popupwfb.po) available in the languages folder. Translators We
 = 1.3 =		
 
 1. Tested up to 3.9
+
+= 1.4 =		
+
+1. Added Start Date option for popup window (Expiration date option already available).

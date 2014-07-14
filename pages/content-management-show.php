@@ -69,6 +69,7 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
 			<th scope="col"><?php _e('Timeout', 'popupwfb'); ?></th>
 			<th scope="col"><?php _e('Group', 'popupwfb'); ?></th>
 			<th scope="col"><?php _e('Status', 'popupwfb'); ?></th>
+			<th scope="col"><?php _e('Start Date', 'popupwfb'); ?></th>
 			<th scope="col"><?php _e('Expiration', 'popupwfb'); ?></th>
           </tr>
         </thead>
@@ -81,6 +82,7 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
 			<th scope="col"><?php _e('Timeout', 'popupwfb'); ?></th>
 			<th scope="col"><?php _e('Group', 'popupwfb'); ?></th>
 			<th scope="col"><?php _e('Status', 'popupwfb'); ?></th>
+			<th scope="col"><?php _e('Start Date', 'popupwfb'); ?></th>
 			<th scope="col"><?php _e('Expiration', 'popupwfb'); ?></th>
           </tr>
         </tfoot>
@@ -107,6 +109,7 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
 						<td><?php echo $data['Popupwfb_timeout']; ?></td>
 						<td><?php echo $data['Popupwfb_group']; ?></td>
 						<td><?php echo $data['Popupwfb_status']; ?></td>
+						<td><?php echo substr($data['Popupwfb_starttime'],0,10); ?></td>
 						<td><?php echo substr($data['Popupwfb_expiration'],0,10); ?></td>
 					</tr>
 					<?php 
@@ -115,7 +118,7 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
 			}
 			else
 			{
-				?><tr><td colspan="8" align="center"><?php _e('No records available.', 'popupwfb'); ?></td></tr><?php 
+				?><tr><td colspan="9" align="center"><?php _e('No records available.', 'popupwfb'); ?></td></tr><?php 
 			}
 			?>
 		</tbody>

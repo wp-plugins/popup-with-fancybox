@@ -14,6 +14,7 @@ $form = array(
 	'Popupwfb_group' => '',
 	'Popupwfb_status' => '',
 	'Popupwfb_expiration' => '',
+	'Popupwfb_starttime' => '',
 	'Popupwfb_id' => ''
 );
 
@@ -65,7 +66,8 @@ if (isset($_POST['Popupwfb_form_submit']) && $_POST['Popupwfb_form_submit'] == '
 		$Popupwfb_error_found = TRUE;
 	}
 	
-	$form['Popupwfb_expiration'] = isset($_POST['Popupwfb_expiration']) ? $_POST['Popupwfb_expiration'] : '';
+	$form['Popupwfb_expiration'] = isset($_POST['Popupwfb_expiration']) ? $_POST['Popupwfb_expiration'] : '9999-12-31';
+	$form['Popupwfb_starttime'] = isset($_POST['Popupwfb_starttime']) ? $_POST['Popupwfb_starttime'] : '0000-00-00';
 	
 
 	//	No errors found, we can add this Group to the table
@@ -73,9 +75,10 @@ if (isset($_POST['Popupwfb_form_submit']) && $_POST['Popupwfb_form_submit'] == '
 	{
 		$sql = $wpdb->prepare(
 			"INSERT INTO `".Popupwfb_Table."`
-			(`Popupwfb_width`, `Popupwfb_timeout`, `Popupwfb_title`, `Popupwfb_content`, `Popupwfb_group`, `Popupwfb_status`, `Popupwfb_expiration`)
-			VALUES(%s, %s, %s, %s, %s, %s, %s)",
-			array($form['Popupwfb_width'], $form['Popupwfb_timeout'], $form['Popupwfb_title'], $form['Popupwfb_content'], $form['Popupwfb_group'], $form['Popupwfb_status'], $form['Popupwfb_expiration'])
+			(`Popupwfb_width`, `Popupwfb_timeout`, `Popupwfb_title`, `Popupwfb_content`, `Popupwfb_group`, `Popupwfb_status`, `Popupwfb_expiration`, `Popupwfb_starttime`)
+			VALUES(%s, %s, %s, %s, %s, %s, %s, %s)",
+			array($form['Popupwfb_width'], $form['Popupwfb_timeout'], $form['Popupwfb_title'], 
+			$form['Popupwfb_content'], $form['Popupwfb_group'], $form['Popupwfb_status'], $form['Popupwfb_expiration'], $form['Popupwfb_starttime'])
 		);
 		$wpdb->query($sql);
 		
@@ -90,6 +93,7 @@ if (isset($_POST['Popupwfb_form_submit']) && $_POST['Popupwfb_form_submit'] == '
 			'Popupwfb_group' => '',
 			'Popupwfb_status' => '',
 			'Popupwfb_expiration' => '',
+			'Popupwfb_starttime' => '',
 			'Popupwfb_id' => ''
 		);
 	}
@@ -169,6 +173,10 @@ if ($Popupwfb_error_found == FALSE && strlen($Popupwfb_success) > 0)
 		?>
 		</select>
 		<p><?php _e('Please select available group for your popup message.', 'popupwfb'); ?></p>
+		
+		<label for="tag-title"><?php _e('Start date', 'popupwfb'); ?></label>
+		<input name="Popupwfb_starttime" type="text" id="Popupwfb_starttime" value="0000-00-00" maxlength="10" />
+		<p><?php _e('Please enter popup display start date in this format YYYY-MM-DD <br /> 0000-00-00 : Is equal to no min date.', 'popupwfb'); ?></p>
 		
 		<label for="tag-title"><?php _e('Expiration date', 'popupwfb'); ?></label>
 		<input name="Popupwfb_expiration" type="text" id="Popupwfb_expiration" value="9999-12-31" maxlength="10" />

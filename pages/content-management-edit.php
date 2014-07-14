@@ -42,6 +42,7 @@ else
 		'Popupwfb_group' => $data['Popupwfb_group'],
 		'Popupwfb_status' => $data['Popupwfb_status'],
 		'Popupwfb_expiration' => $data['Popupwfb_expiration'],
+		'Popupwfb_starttime' => $data['Popupwfb_starttime'],
 		'Popupwfb_extra1' => $data['Popupwfb_extra1'],
 		'Popupwfb_id' => $data['Popupwfb_id']
 	);
@@ -94,7 +95,8 @@ if (isset($_POST['Popupwfb_form_submit']) && $_POST['Popupwfb_form_submit'] == '
 		$Popupwfb_error_found = TRUE;
 	}
 	
-	$form['Popupwfb_expiration'] = isset($_POST['Popupwfb_expiration']) ? $_POST['Popupwfb_expiration'] : '';
+	$form['Popupwfb_expiration'] = isset($_POST['Popupwfb_expiration']) ? $_POST['Popupwfb_expiration'] : '9999-12-31';
+	$form['Popupwfb_starttime'] = isset($_POST['Popupwfb_starttime']) ? $_POST['Popupwfb_starttime'] : '0000-00-00';
 
 	//	No errors found, we can add this Group to the table
 	if ($Popupwfb_error_found == FALSE)
@@ -107,10 +109,12 @@ if (isset($_POST['Popupwfb_form_submit']) && $_POST['Popupwfb_form_submit'] == '
 				`Popupwfb_content` = %s,
 				`Popupwfb_group` = %s,
 				`Popupwfb_status` = %s,
-				`Popupwfb_expiration` = %s
+				`Popupwfb_expiration` = %s,
+				`Popupwfb_starttime` = %s
 				WHERE Popupwfb_id = %d
 				LIMIT 1",
-				array($form['Popupwfb_width'], $form['Popupwfb_timeout'], $form['Popupwfb_title'], $form['Popupwfb_content'], $form['Popupwfb_group'], $form['Popupwfb_status'], $form['Popupwfb_expiration'], $did)
+				array($form['Popupwfb_width'], $form['Popupwfb_timeout'], $form['Popupwfb_title'], $form['Popupwfb_content'], $form['Popupwfb_group'], 
+				$form['Popupwfb_status'], $form['Popupwfb_expiration'], $form['Popupwfb_starttime'], $did)
 			);
 		$wpdb->query($sSql);
 		$Popupwfb_success = __('Details was successfully updated.', 'popupwfb');
@@ -129,7 +133,10 @@ if ($Popupwfb_error_found == FALSE && strlen($Popupwfb_success) > 0)
 {
 ?>
   <div class="updated fade">
-    <p><strong><?php echo $Popupwfb_success; ?> <a href="<?php echo POPUPWFB_ADMIN_URL; ?>"><?php _e('Click here', 'popupwfb'); ?></a> <?php _e('to view the details', 'popupwfb'); ?></strong></p>
+    <p><strong>
+	<?php echo $Popupwfb_success; ?> <a href="<?php echo POPUPWFB_ADMIN_URL; ?>">
+	<?php _e('Click here', 'popupwfb'); ?></a> <?php _e('to view the details', 'popupwfb'); ?>
+	</strong></p>
   </div>
   <?php
 }
@@ -190,12 +197,20 @@ if ($Popupwfb_error_found == FALSE && strlen($Popupwfb_success) > 0)
 			{ 
 				$thisselected = "selected='selected'" ; 
 			}
-			?><option value='<?php echo strtoupper($arrDistinct["Popupwfb_group"]); ?>' <?php echo $thisselected; ?>><?php echo strtoupper($arrDistinct["Popupwfb_group"]); ?></option><?php
+			?>
+			<option value='<?php echo strtoupper($arrDistinct["Popupwfb_group"]); ?>' <?php echo $thisselected; ?>>
+			<?php echo strtoupper($arrDistinct["Popupwfb_group"]); ?>
+			</option>
+			<?php
 			$thisselected = "";
 		}
 		?>
 		</select>
 		<p><?php _e('Please select available group for your popup message.', 'popupwfb'); ?></p>
+		
+		<label for="tag-title"><?php _e('Start date', 'popupwfb'); ?></label>
+		<input name="Popupwfb_starttime" type="text" id="Popupwfb_starttime" value="<?php echo substr($form['Popupwfb_starttime'],0,10); ?>" maxlength="10" />
+		<p><?php _e('Please enter popup display start date in this format YYYY-MM-DD <br /> 0000-00-00 : Is equal to no min date.', 'popupwfb'); ?></p>
 		
 		<label for="tag-title"><?php _e('Expiration date', 'popupwfb'); ?></label>
 		<input name="Popupwfb_expiration" type="text" id="Popupwfb_expiration" value="<?php echo substr($form['Popupwfb_expiration'],0,10); ?>" maxlength="10" />
