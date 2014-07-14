@@ -99,7 +99,7 @@ Plugin *.po file (popupwfb.po) available in the languages folder. Translators We
 
 = 1.4 =		
 
-1. Added Start Date option for popup window (Expiration date option already available).
+Added Start Date option for popup window (Expiration date option already available).
 
 == Changelog ==
 
@@ -125,4 +125,4 @@ Plugin *.po file (popupwfb.po) available in the languages folder. Translators We
 
 = 1.4 =		
 
-1. Added Start Date option for popup window (Expiration date option already available).
+Added Start Date option for popup window (Expiration date option already available).
