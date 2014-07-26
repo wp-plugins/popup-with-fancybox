@@ -6,7 +6,7 @@ Plugin URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpres
 Tags:  popup, fancybox, plugin
 Requires at least: 3.4
 Tested up to: 3.9.1
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -101,6 +101,10 @@ Plugin *.po file (popupwfb.po) available in the languages folder. Translators We
 
 Added Start Date option for popup window (Expiration date option already available).
 
+= 1.5 =
+
+Support short code in the popup (i.e You can add other plugin short code inside this popup window)
+
 == Changelog ==
 
 = 1.0 =		
@@ -126,3 +130,7 @@ Plugin *.po file (popupwfb.po) available in the languages folder. Translators We
 = 1.4 =		
 
 Added Start Date option for popup window (Expiration date option already available).
+
+= 1.5 =
+
+Support short code in the popup (i.e You can add other plugin short code inside this popup window)

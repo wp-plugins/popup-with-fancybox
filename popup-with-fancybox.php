@@ -3,7 +3,7 @@
 Plugin Name: Popup with fancybox
 Description: This plugin allows you to create lightweight JQuery fancy box popup window in your blog with custom content. In the admin interface we can easily configure popup size and timeout. In this popup we can display any content such as Video, Image, Advertisement and much more.
 Author: Gopi Ramasamy
-Version: 1.4
+Version: 1.5
 Plugin URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Author URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Donate link: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
@@ -100,7 +100,9 @@ function Popupwfb_shortcode( $atts )
 		$Popupwfb_width = stripslashes($data->Popupwfb_width);
 		$Popupwfb_timeout = stripslashes($data->Popupwfb_timeout);
 		$Popupwfb_title = stripslashes($data->Popupwfb_title);
-		$Popupwfb_content = stripslashes($data->Popupwfb_content);
+		$Popupwfb_Temp = stripslashes($data->Popupwfb_content);
+		$Popupwfb_Temp = do_shortcode($Popupwfb_Temp);
+		$Popupwfb_content = $Popupwfb_Temp;
 		
 		if(!is_numeric($Popupwfb_width)) { $Popupwfb_width = 500 ;}
 		if(!is_numeric($Popupwfb_timeout)) { $Popupwfb_timeout = 3000 ;}
@@ -112,7 +114,7 @@ function Popupwfb_shortcode( $atts )
 
 		$Popupwfb = $Popupwfb.'<div id="simple-popup-with-fancybox" style="display: none;">';
 			$Popupwfb = $Popupwfb.'<div class="fancybox-content-inside" style="width:'.$Popupwfb_width.'px">';
-				$Popupwfb = $Popupwfb. nl2br(stripslashes($Popupwfb_content));
+				$Popupwfb = $Popupwfb. nl2br($Popupwfb_content);
 			$Popupwfb = $Popupwfb.'</div>';
 		$Popupwfb = $Popupwfb.'</div>';
 
