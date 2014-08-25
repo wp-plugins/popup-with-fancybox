@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpres
 Plugin URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Tags:  popup, fancybox, plugin
 Requires at least: 3.4
-Tested up to: 3.9.1
-Stable tag: 1.5
+Tested up to: 4.0
+Stable tag: 1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -105,6 +105,10 @@ Added Start Date option for popup window (Expiration date option already availab
 
 Support short code in the popup (i.e You can add other plugin short code inside this popup window)
 
+= 1.6 =		
+
+1. Tested up to 4.0
+
 == Changelog ==
 
 = 1.0 =		
@@ -134,3 +138,7 @@ Added Start Date option for popup window (Expiration date option already availab
 = 1.5 =
 
 Support short code in the popup (i.e You can add other plugin short code inside this popup window)
+
+= 1.6 =		
+
+1. Tested up to 4.0

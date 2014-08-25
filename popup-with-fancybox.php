@@ -3,7 +3,7 @@
 Plugin Name: Popup with fancybox
 Description: This plugin allows you to create lightweight JQuery fancy box popup window in your blog with custom content. In the admin interface we can easily configure popup size and timeout. In this popup we can display any content such as Video, Image, Advertisement and much more.
 Author: Gopi Ramasamy
-Version: 1.5
+Version: 1.6
 Plugin URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Author URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Donate link: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
@@ -75,7 +75,10 @@ function Popupwfb_shortcode( $atts )
 	if($Popupwfb_group <> "" && $Popupwfb_id <> "")
 	{
 		$sSql = $sSql . " and Popupwfb_group='$Popupwfb_group'";
-		$sSql = $sSql . " and Popupwfb_id=$Popupwfb_id";	
+		if($Popupwfb_id > 0)
+		{
+			$sSql = $sSql . " and Popupwfb_id=$Popupwfb_id";
+		}
 	}
 	else if($Popupwfb_group <> "" && $Popupwfb_id == "")
 	{
@@ -83,14 +86,17 @@ function Popupwfb_shortcode( $atts )
 	}
 	else if($Popupwfb_group == "" && $Popupwfb_id <> "")
 	{
-		$sSql = $sSql . " and Popupwfb_id=$Popupwfb_id";
+		if($Popupwfb_id > 0)
+		{
+			$sSql = $sSql . " and Popupwfb_id=$Popupwfb_id";
+		}
 	}
-	
+
 	$sSql = $sSql . " and ( Popupwfb_expiration >= NOW() or Popupwfb_expiration = '0000-00-00 00:00:00' )";
 	$sSql = $sSql . " and ( Popupwfb_starttime <= NOW() or Popupwfb_starttime = '0000-00-00 00:00:00' )";
 	$sSql = $sSql . " Order by rand()";
 	$sSql = $sSql . " LIMIT 0,1";
-
+	
 	$Popupwfb = "";
 	$data = $wpdb->get_results($sSql);
 	if ( ! empty($data) ) 

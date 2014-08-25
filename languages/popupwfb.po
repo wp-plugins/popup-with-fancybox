@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Popup with fancybox\n"
-"POT-Creation-Date: 2014-07-14 22:33+0800\n"
-"PO-Revision-Date: 2014-07-14 22:33+0800\n"
+"POT-Creation-Date: 2014-08-02 23:49+0800\n"
+"PO-Revision-Date: 2014-08-02 23:49+0800\n"
 "Last-Translator: \n"
 "Language-Team: www.gopiplus.com <www.gopiplus.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,20 +13,20 @@ msgstr ""
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../popup-with-fancybox.php:200 ../pages/content-management-add.php:196
+#: ../popup-with-fancybox.php:202 ../pages/content-management-add.php:196
 #: ../pages/content-management-edit.php:230
 #: ../pages/content-management-show.php:144 ../pages/content-setting.php:71
 msgid "Check official website for more information"
 msgstr ""
 
-#: ../popup-with-fancybox.php:201 ../pages/content-management-add.php:197
+#: ../popup-with-fancybox.php:203 ../pages/content-management-add.php:197
 #: ../pages/content-management-edit.php:231
 #: ../pages/content-management-show.php:145 ../pages/content-setting.php:72
 msgid "click here"
 msgstr ""
 
-#: ../popup-with-fancybox.php:208 ../popup-with-fancybox.php:213
-#: ../popup-with-fancybox.php:246 ../pages/content-management-add.php:123
+#: ../popup-with-fancybox.php:210 ../popup-with-fancybox.php:215
+#: ../popup-with-fancybox.php:248 ../pages/content-management-add.php:123
 #: ../pages/content-management-edit.php:147
 #: ../pages/content-management-show.php:52 ../pages/content-setting.php:6
 msgid "Popup with fancybox"
