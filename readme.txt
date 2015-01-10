@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpres
 Plugin URI: http://www.gopiplus.com/work/2013/08/08/popup-with-fancybox-wordpress-plugin/
 Tags:  popup, fancybox, plugin
 Requires at least: 3.4
-Tested up to: 4.0
-Stable tag: 1.7
+Tested up to: 4.1
+Stable tag: 1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -113,6 +113,10 @@ Support short code in the popup (i.e You can add other plugin short code inside 
 
 1. Display once per session issue has been fixed.
 
+= 1.8 =
+
+1. Tested up to 4.1
+
 == Changelog ==
 
 = 1.0 =		
@@ -154,3 +158,7 @@ Support short code in the popup (i.e You can add other plugin short code inside 
 = 1.7 =	
 
 1. Display once per session issue has been fixed.
+
+= 1.8 =
+
+1. Tested up to 4.1
