@@ -4,6 +4,7 @@
 if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == 'yes')
 {
 	$did = isset($_GET['did']) ? $_GET['did'] : '0';
+	if(!is_numeric($did)) { die('<p>Are you sure you want to do this?</p>'); }
 	
 	$Popupwfb_success = '';
 	$Popupwfb_success_msg = FALSE;
@@ -62,7 +63,6 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
       <table width="100%" class="widefat" id="straymanage">
         <thead>
           <tr>
-            <th class="check-column" scope="col"><input type="checkbox" name="Popupwfb_group_item[]" /></th>
 			<th scope="col"><?php _e('Id', 'popupwfb'); ?></th>
 			<th scope="col"><?php _e('Title', 'popupwfb'); ?></th>
             <th scope="col"><?php _e('Width', 'popupwfb'); ?></th>
@@ -75,7 +75,6 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
         </thead>
 		<tfoot>
           <tr>
-            <th class="check-column" scope="col"><input type="checkbox" name="Popupwfb_group_item[]" /></th>
 			<th scope="col"><?php _e('Id', 'popupwfb'); ?></th>
 			<th scope="col"><?php _e('Title', 'popupwfb'); ?></th>
             <th scope="col"><?php _e('Width', 'popupwfb'); ?></th>
@@ -95,7 +94,6 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
 				{
 					?>
 					<tr class="<?php if ($i&1) { echo'alternate'; } else { echo ''; }?>">
-						<td align="left"><input type="checkbox" value="<?php echo $data['Popupwfb_id']; ?>" name="Popupwfb_group_item[]"></td>
 						<td><?php echo $data['Popupwfb_id']; ?></td>
 						<td><?php echo stripslashes($data['Popupwfb_title']); ?>
 						<div class="row-actions">
@@ -118,7 +116,7 @@ if (isset($_POST['frm_Popupwfb_display']) && $_POST['frm_Popupwfb_display'] == '
 			}
 			else
 			{
-				?><tr><td colspan="9" align="center"><?php _e('No records available.', 'popupwfb'); ?></td></tr><?php 
+				?><tr><td colspan="8" align="center"><?php _e('No records available.', 'popupwfb'); ?></td></tr><?php 
 			}
 			?>
 		</tbody>
